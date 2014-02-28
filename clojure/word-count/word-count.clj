@@ -4,11 +4,8 @@
 (defn- tokenize [str]
   (split (lower-case str) #"\W"))
 
-(defn- non-blank? [str]
-  (not (blank? str)))
-
 (defn- filter-words [str]
-  (filter non-blank? (tokenize str)))
+  (filter (comp not blank?) (tokenize str)))
 
 (defn- add-count-for [word counts]
   (assoc counts word (inc (get counts word 0))))
