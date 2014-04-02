@@ -5,7 +5,7 @@
   (split (lower-case str) #"\W"))
 
 (defn- filter-words [str]
-  (filter (comp not blank?) (tokenize str)))
+  (remove blank? (tokenize str)))
 
 (defn word-count [str]
   (frequencies (filter-words str)))
