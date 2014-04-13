@@ -1,11 +1,26 @@
 (ns beer
-  (:use [clojure.string :only [join upper-case]]))
+  (:use [clojure.string :only [join upper-case]]
+        [clojure.pprint :only [cl-format]]))
+
+(defn- pluralize [n s]
+  (if (= n 0)
+    (str "no more " s "s")
+    (let [fmt-s (str "~D " s "~:P")]
+      (cl-format nil fmt-s n))))
+
+(defn- bottle-count-phrase [n]
+  (str
+   (pluralize n "bottle")
+   " of beer"))
+
+(defn- bottle-count-on-wall-phrase [n]
+  (str (bottle-count-phrase n) " on the wall" ))
 
 (defn- current-count-phrase [n]
-  (cond
-   (= n 0) "no more bottles of beer on the wall, no more bottles of beer"
-   (= n 1) (str n " bottle of beer on the wall, " n " bottle of beer")
-   :else (str n " bottles of beer on the wall, " n " bottles of beer")))
+  (str
+   (bottle-count-on-wall-phrase n)
+   ", "
+   (bottle-count-phrase n)))
 
 (defn- action-phrase [n]
   (cond
