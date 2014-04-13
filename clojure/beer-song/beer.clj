@@ -10,8 +10,9 @@
 (defn- action-phrase [n]
   (cond
    (= n 0) "go to the store and buy some more, "
-   (= n 1) "take it down and pass it around, "
-   :else "take one down and pass it around, "))
+   :else (str "take "
+              (if (= n 1) "it" "one")
+              " down and pass it around, ")))
 
 (defn- next-count-phrase [n]
   (cond
