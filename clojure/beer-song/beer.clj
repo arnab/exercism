@@ -1,31 +1,37 @@
 (ns beer
-  (:use [clojure.string :only [join]]))
+  (:use [clojure.string :only [join upper-case]]))
 
-(defn- first-stanza [n]
+(defn- current-count-phrase [n]
   (cond
-   (= n 0) "No more bottles of beer on the wall, no more bottles of beer.\n"
-   (= n 1) (str n " bottle of beer on the wall, " n " bottle of beer.\n")
-   :else (str n " bottles of beer on the wall, " n " bottles of beer.\n")))
+   (= n 0) "no more bottles of beer on the wall, no more bottles of beer"
+   (= n 1) (str n " bottle of beer on the wall, " n " bottle of beer")
+   :else (str n " bottles of beer on the wall, " n " bottles of beer")))
 
-(defn- second-stanza [n]
+(defn- action-phrase [n]
   (cond
-   (= n 0) "Go to the store and buy some more, "
-   (= n 1) "Take it down and pass it around, "
-   :else "Take one down and pass it around, "))
+   (= n 0) "go to the store and buy some more, "
+   (= n 1) "take it down and pass it around, "
+   :else "take one down and pass it around, "))
 
-(defn- last-stanza [n]
+(defn- next-count-phrase [n]
   (cond
-   (= n -1) "99 bottles of beer on the wall.\n"
-   (= n 0) "no more bottles of beer on the wall.\n"
-   (= n 1) (str n " bottle of beer on the wall.\n")
-   :else (str n " bottles of beer on the wall.\n")))
+   (= n -1) "99 bottles of beer on the wall"
+   (= n 0) "no more bottles of beer on the wall"
+   (= n 1) (str n " bottle of beer on the wall")
+   :else (str n " bottles of beer on the wall")))
+
+(defn- make-sentense [[fst & rst]]
+  (str (apply str (upper-case fst) rst) ".\n"))
 
 (defn verse [n]
-  (str
-   (first-stanza n) (second-stanza n) (last-stanza (dec n))))
+  (join "" [
+            (make-sentense (current-count-phrase n))
+            (make-sentense (str
+                            (action-phrase n)
+                            (next-count-phrase (dec n))))]))
 
 (defn sing
   ([from] (sing from 0))
   ([from to]
      (join "\n"
-           (map verse (range from (- to 1) -1)))))
+           (map verse (range from (dec to) -1)))))
