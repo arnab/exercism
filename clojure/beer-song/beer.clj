@@ -31,7 +31,6 @@
 
 (defn- next-count-phrase [n]
   (cond
-   (= n -1) "99 bottles of beer on the wall"
    (= n 0) "no more bottles of beer on the wall"
    (= n 1) (str n " bottle of beer on the wall")
    :else (str n " bottles of beer on the wall")))
@@ -44,7 +43,7 @@
             (make-sentense (current-count-phrase n))
             (make-sentense (str
                             (action-phrase n)
-                            (next-count-phrase (dec n))))]))
+                            (next-count-phrase (mod (dec n) 100))))]))
 
 (defn sing
   ([from] (sing from 0))
