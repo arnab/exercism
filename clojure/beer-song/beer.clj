@@ -22,18 +22,15 @@
    ", "
    (bottle-count-phrase n)))
 
+(defn- next-count-phrase [n]
+  (bottle-count-on-wall-phrase n))
+
 (defn- action-phrase [n]
   (cond
    (= n 0) "go to the store and buy some more, "
    :else (str "take "
               (if (= n 1) "it" "one")
               " down and pass it around, ")))
-
-(defn- next-count-phrase [n]
-  (cond
-   (= n 0) "no more bottles of beer on the wall"
-   (= n 1) (str n " bottle of beer on the wall")
-   :else (str n " bottles of beer on the wall")))
 
 (defn- make-sentense [[fst & rst]]
   (str (apply str (upper-case fst) rst) ".\n"))
