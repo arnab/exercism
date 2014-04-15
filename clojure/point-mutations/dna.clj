@@ -2,11 +2,10 @@
 
 (defn hamming-distance
   [s1 s2]
-  (loop [[fst-s1 & rst-s1] s1
-         [fst-s2 & rst-s2] s2
-         distance-acc 0]
-    (let [distance (if (= fst-s1 fst-s2) 0 1)
-          distance-acc (+ distance-acc distance)]
-      (if (some empty? [rst-s1 rst-s2])
-        distance-acc
-        (recur rst-s1 rst-s2 distance-acc)))))
+  (loop [[hd1 & tl1] s1
+         [hd2 & tl2] s2
+         acc-dist (atom 0)]
+    (if-not (= hd1 hd2) (swap! acc-dist inc))
+    (if (some empty? [tl1 tl2])
+      @acc-dist
+      (recur tl1 tl2 acc-dist))))
