@@ -34,4 +34,10 @@
   (re-find #"\d{3}" (number num)))
 
 (defn pretty-print
-  [num])
+  [num]
+  (let [parts
+        (drop 1 (first (re-seq #"(\d{3})(\d{3})(\d{4})"
+                               (number num))))]
+    (str "(" (first parts) ") "
+         (nth parts 1) "-"
+         (nth parts 2))))
