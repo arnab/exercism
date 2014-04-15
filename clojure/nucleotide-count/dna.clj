@@ -5,16 +5,6 @@
 (def valid-nucleotides
   (conj (set (keys default-counts)) \U))
 
-(defn- validate-neucleotide
-  [n]
-  (if-not (contains? valid-nucleotides n)
-    (throw (IllegalArgumentException.))))
-
-(defn count
-  [nucleotide strand]
-  (validate-neucleotide nucleotide)
-  (get (nucleotide-counts strand) nucleotide 0))
-
 (defn- extract-nucleotides
   [s]
   (char-array
@@ -25,3 +15,13 @@
   [strand]
   (merge default-counts
          (frequencies (extract-nucleotides strand))))
+
+(defn- valid-neucleotide?
+  [n]
+  (contains? valid-nucleotides n))
+
+(defn count
+  [nucleotide strand]
+  (if (valid-neucleotide? nucleotide)
+    (get (nucleotide-counts strand) nucleotide 0)
+    (throw (IllegalArgumentException. "invalid nucleotide"))))
