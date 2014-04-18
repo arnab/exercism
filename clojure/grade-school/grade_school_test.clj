@@ -41,5 +41,12 @@
              (school/add "Kyle" 3)
              (school/sorted)))))
 
-(run-tests)
+(deftest add-students-avoids-external-mutation
+  (is (= {3 ["Chelsea"] 7 ["Logan"]}
+         (-> db
+             (assoc 2 ["John"])
+             (school/add "Chelsea" 3)
+             (assoc 4 ["Judie"])
+             (school/add "Logan" 7)))))
 
+(run-tests)
