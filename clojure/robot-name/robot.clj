@@ -33,15 +33,15 @@
 (defn- change-name [robot new-name]
   (let [id (robot :id)]
     (dosync
-     (alter robots assoc-in [id] name))
+     (alter robots assoc-in [id :name] new-name))
     (@robots id)))
 
 (defn robot []
   (manufacture))
 
 (defn robot-name [robot]
-  (:name (get @robots (robot :id)
-              (change-name robot (generate-name)))))
+  (or (:name ( @robots (robot :id)))
+      (:name (change-name robot (generate-name-and-inc-seq)))))
 
 (defn reset-name [robot]
   (let [original-name (robot :name)]
