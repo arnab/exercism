@@ -1,6 +1,6 @@
 (ns robot)
 
-(def name-seq (atom (list "A" "A" 1)))
+(def name-seq (ref (list "A" "A" 1)))
 
 (defn- format-name
   [name-seq]
@@ -12,7 +12,8 @@
 
 (defn- generate-name
   []
-  (swap! name-seq inc-name-seq)
+  (dosync
+   (alter name-seq inc-name-seq))
   (format-name name-seq))
 
 (defn robot
