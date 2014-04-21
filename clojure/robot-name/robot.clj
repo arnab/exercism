@@ -1,28 +1,32 @@
 (ns robot)
 
-(def name-seq (ref (list "A" "A" 1)))
+(def id-seq (ref 0))
+(def name-seq (ref (list "A" "A" 0)))
+(def robots (ref {}))
 
-(defn- format-name
-  [name-seq]
-  (apply format "%s%s%03d" @name-seq))
-
-(defn- inc-name-seq
-  [curr-seq]
+(defn- inc-name-seq [curr-seq]
   (list "A" "A" (inc (last curr-seq))))
 
-(defn- generate-name
-  []
-  (dosync
-   (alter name-seq inc-name-seq))
-  (format-name name-seq))
+(defn- format-name [name]
+  (apply format "%s%s%03d" name))
 
-(defn robot
-  []
-  {:name (generate-name)})
+(defn- build []
+  {:name (format-name @name-seq)
+   :id @id-seq})
 
-(defn robot-name
-  [robot]
-  (:name robot))
+(defn- manufacture []
+  (let [new-robot (build)]
+    (dosync
+     (alter robots assoc @id-seq new-robot)
+     (alter name-seq inc-name-seq)
+     (alter id-seq inc))
+    new-robot))
+
+(defn robot []
+  (manufacture))
+
+(defn robot-name [robot]
+  (:name (@robots (robot :id))))
 
 ;; (defn reset-name
 ;;   [robot])
