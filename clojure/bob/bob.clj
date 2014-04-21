@@ -1,18 +1,18 @@
 (ns bob
   (:use [clojure.string :only [join blank?]]))
 
-(defn- all-caps? [str]
-  (let [ascii-chars (join "" (re-seq #"[a-zA-Z]" str))]
+(defn- all-caps? [s]
+  (let [ascii-chars (join "" (re-seq #"[a-zA-Z]" s))]
     (and
      (not (blank? ascii-chars))
      (every? #(Character/isUpperCase %) ascii-chars))))
 
-(defn- question? [str]
-  (re-matches #".*\?\Z" str))
+(defn- question? [s]
+  (re-matches #".*\?\Z" s))
 
-(defn response-for [str]
+(defn response-for [s]
   (cond
-   (blank? str) "Fine. Be that way!"
-   (all-caps? str) "Woah, chill out!"
-   (question? str) "Sure."
+   (blank? s) "Fine. Be that way!"
+   (all-caps? s) "Woah, chill out!"
+   (question? s) "Sure."
    :else "Whatever."))
