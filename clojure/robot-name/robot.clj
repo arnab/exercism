@@ -10,8 +10,16 @@
 (defn- format-name [name]
   (apply format "%s%s%03d" name))
 
+(defn- generate-name []
+  (format-name @name-seq))
+
+(defn- generate-name-and-inc-seq []
+  (let [name (generate-name)]
+    (dosync (alter name-seq inc-name-seq))
+    name))
+
 (defn- build []
-  {:name (format-name @name-seq)
+  {:name (generate-name)
    :id @id-seq})
 
 (defn- manufacture []
@@ -22,11 +30,20 @@
      (alter id-seq inc))
     new-robot))
 
+(defn- change-name [robot new-name]
+  (let [id (robot :id)]
+    (dosync
+     (alter robots assoc-in [id] name))
+    (@robots id)))
+
 (defn robot []
   (manufacture))
 
 (defn robot-name [robot]
-  (:name (@robots (robot :id))))
+  (:name (get @robots (robot :id)
+              (change-name robot (generate-name)))))
 
-;; (defn reset-name
-;;   [robot])
+(defn reset-name [robot]
+  (let [original-name (robot :name)]
+    (change-name robot nil)
+    original-name))
