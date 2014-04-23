@@ -1,11 +1,7 @@
-(ns phrase
-  (:use [clojure.string :only [lower-case split blank?]]))
+(ns phrase)
 
-(defn- tokenize [str]
-  (split (lower-case str) #"\W"))
+(defn- tokenize [s]
+  (re-seq #"\w+" (clojure.string/lower-case s)))
 
-(defn- filter-words [str]
-  (remove blank? (tokenize str)))
-
-(defn word-count [str]
-  (frequencies (filter-words str)))
+(defn word-count [s]
+  (frequencies (tokenize s)))
