@@ -1,6 +1,6 @@
 (ns robot)
 
-(def name-seq (ref ["A" "A" 0]))
+(def name-seq (atom ["A" "A" 0]))
 (defn- inc-name-seq [curr-seq]
   (update-in curr-seq [2] inc))
 
@@ -12,7 +12,7 @@
 
 (defn- next-name []
   (let [name (generate-name)]
-    (dosync (alter name-seq inc-name-seq))
+    (swap! name-seq inc-name-seq)
     name))
 
 (defn robot []
