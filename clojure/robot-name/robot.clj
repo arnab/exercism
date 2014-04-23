@@ -19,7 +19,8 @@
   (atom (next-name)))
 
 (defn robot-name [robot]
-  @robot)
+  (or @robot
+      (reset! robot (next-name))))
 
 (defn reset-name [robot]
-  (reset! robot (next-name)))
+  (reset! robot nil))
