@@ -1,33 +1,29 @@
 (ns robot)
 
-(def numbers (range 1000))
-
-(def name-seq (atom ["A" "A" 1]))
-
-(defn- max-for [part]
-  999)
-
-(defn- next-part [part]
-  (partial inc))
-
-(defn- inc-name-seq [curr-seq]
-  (update-in curr-seq [2] inc)
-  (loop [part 2]
-    ;; which piece of the name seq are we dealing with
-    (if (= (curr-seq part) (max-for part))
-      (recur (dec part))
-      (update-in curr-seq [part] next-part)))
-  )
+(def letters (map char (range (int \A) (inc (int \B)))))
+(def numbers (range 5))
+(def starting-vals [letters letters numbers])
+(def name-seq (atom starting-vals))
 
 (defn- format-name [name]
   (apply format "%s%s%03d" name))
 
 (defn- generate-name []
-  (format-name @name-seq))
+  (format-name (map first @name-seq)))
+
+(defn- inc-name-seq []
+  (loop [part 2]
+    (if (seq (@name-seq part))
+      (swap! name-seq update-in [part] rest)
+      (do
+        (reset! name-seq
+                (assoc-in @name-seq [part]
+                          (starting-vals part)))
+        (recur (dec part))))))
 
 (defn- next-name []
   (let [name (generate-name)]
-    (swap! name-seq inc-name-seq)
+    (inc-name-seq)
     name))
 
 (defn robot []
