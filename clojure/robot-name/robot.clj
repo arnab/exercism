@@ -1,8 +1,23 @@
 (ns robot)
 
-(def name-seq (atom ["A" "A" 0]))
+(def numbers (range 1000))
+
+(def name-seq (atom ["A" "A" 1]))
+
+(defn- max-for [part]
+  999)
+
+(defn- next-part [part]
+  (partial inc))
+
 (defn- inc-name-seq [curr-seq]
-  (update-in curr-seq [2] inc))
+  (update-in curr-seq [2] inc)
+  (loop [part 2]
+    ;; which piece of the name seq are we dealing with
+    (if (= (curr-seq part) (max-for part))
+      (recur (dec part))
+      (update-in curr-seq [part] next-part)))
+  )
 
 (defn- format-name [name]
   (apply format "%s%s%03d" name))
