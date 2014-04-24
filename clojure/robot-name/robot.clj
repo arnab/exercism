@@ -1,7 +1,7 @@
 (ns robot)
 
-(def letters (map char (range (int \A) (inc (int \B)))))
-(def numbers (range 5))
+(def letters (map char (range (int \A) (inc (int \Z)))))
+(def numbers (range 1000))
 (def starting-vals [letters letters numbers])
 (def name-seq (atom starting-vals))
 
@@ -13,7 +13,7 @@
 
 (defn- inc-name-seq []
   (loop [part 2]
-    (if (seq (@name-seq part))
+    (if (seq (rest (@name-seq part)))
       (swap! name-seq update-in [part] rest)
       (do
         (reset! name-seq

@@ -13,13 +13,13 @@
 (deftest different-robots-have-different-names
   (is (not (= (robot/robot-name clutz) (robot/robot-name robbie)))))
 
-(def army (repeatedly 998 #(robot/robot))) ; 2 were already created
+(def army (repeatedly 999 #(robot/robot))) ; 2 were already created
 
 (deftest handles-more-than-999-uniq-names
-  (is (= 998 (count (distinct (map robot/robot-name army))))))
+  (is (= 999 (count (distinct (map robot/robot-name army))))))
 
 (deftest recycles-numbers-after-999-robots
-  (is (= "AB001" (robot/robot-name (last army)))))
+  (is (= "AB000" (robot/robot-name (last army)))))
 
 (def original-name (robot/robot-name robbie))
 (robot/reset-name robbie)
