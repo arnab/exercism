@@ -1,29 +1,17 @@
 (ns robot)
 
-(def letters (map char (range (int \A) (inc (int \Z)))))
+(def letters (map char (range
+                        (int \A)
+                        (inc (int \Z)))))
 (def numbers (range 1000))
-(def starting-vals [letters letters numbers])
-(def name-seq (atom starting-vals))
-
-(defn- format-name [name]
-  (apply format "%s%s%03d" name))
-
-(defn- generate-name []
-  (format-name (map first @name-seq)))
-
-(defn- inc-name-seq []
-  (loop [part 2]
-    (if (seq (rest (@name-seq part)))
-      (swap! name-seq update-in [part] rest)
-      (do
-        (reset! name-seq
-                (assoc-in @name-seq [part]
-                          (starting-vals part)))
-        (recur (dec part))))))
+(def name-seq (atom (for [l1 letters
+                          l2 letters
+                          n numbers]
+                      (format "%s%s%03d" l1 l2 n))))
 
 (defn- next-name []
-  (let [name (generate-name)]
-    (inc-name-seq)
+  (let [name (first @name-seq)]
+    (swap! name-seq rest)
     name))
 
 (defn robot []
