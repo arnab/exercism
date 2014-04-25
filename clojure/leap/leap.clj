@@ -4,6 +4,7 @@
   (= 0 (mod a b)))
 
 (defn leap-year? [yr]
-  (and (divisible? yr 4)
-       (or (not (divisible? yr 100))
-           (divisible? yr 400))))
+  (cond
+   (divisible? yr 400) true
+   (divisible? yr 100) false
+   :else (divisible? yr 4)))
