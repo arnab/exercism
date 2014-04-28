@@ -1,9 +1,10 @@
 (ns etl
   (:require [clojure.string :as str]))
 
-(defn- merge-scores [map tiles score]
-  (merge map
-         (zipmap tiles (repeat score))))
+(defn- merge-scores [result tiles score]
+  (merge result
+         (zipmap (map str/lower-case tiles)
+                 (repeat score))))
 
 (defn transform [defs]
   (loop [
@@ -11,5 +12,4 @@
          acc {}]
     (if more_defs
       (recur more_defs (merge-scores acc tiles score))
-      (merge-scores acc tiles score))
-    ))
+      (merge-scores acc tiles score))))
