@@ -6,10 +6,10 @@
          (zipmap tiles (repeat score))))
 
 (defn transform [definitions]
-  (loop [[
-          [score tiles] & others] (seq definitions)
-          acc {}]
-    (if (first others)
+  (loop [
+         [[score tiles] & others] (seq definitions)
+         acc {}]
+    (if others
       (recur others (merge-scores acc tiles score))
-      (merge-scores acc tiles score)
-      )))
+      (merge-scores acc tiles score))
+    ))
