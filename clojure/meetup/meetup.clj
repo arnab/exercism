@@ -2,6 +2,9 @@
   (:require [clj-time.core :as t]
             [clj-time.predicates :as tpr]))
 
+(defn- simple-format [d]
+  [(t/year d) (t/month d) (t/day d)])
+
 (defn- dates-in
   "returns a list of dates, given the year and month and day-name.
    e.g. All dates in 2013 Feb: (dates-in 2014 4)
@@ -22,14 +25,12 @@
    nil if position is not in the list.
    e.g. Fourth Sunday of March 2013:
           (schedule-by-week 2013 3 7 4)"
-  (get (dates-in yr mm dow) (dec pos)))
+  (simple-format
+   (nth (dates-in yr mm dow) (dec pos))))
 
-(defn- schedule-by-range [dates date-range]
-  "returns the first date that's also in the given range. nil if none match"
-  )
-
-;;; mon/tue... teenth
-;;; first/second/third/fourth/last mon/tue day
-
-;;; get last
-;; (get v (dec (count v)))
+(defn- schedule-by-range [yr mm dow date-range]
+  "returns the first date that's also in the given range. nil if none match.
+   e.g. monteenth in May 2013: (schedule-by-range 2013 5 1 (range 13 20))"
+  (simple-format
+   (first (filter #(= 13 (t/day %))
+                  (dates-in yr mm dow)))))
