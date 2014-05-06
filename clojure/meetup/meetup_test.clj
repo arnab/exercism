@@ -64,17 +64,17 @@
 ;; (deftest sunteenth-of-october-2013
 ;;   (is (= [2013 10 13] (meetup/sunteenth 10 2013))))
 
-(deftest first-monday-of-march-2013
-  (is (= [2013 3 4] (meetup/first-monday 3 2013))))
+;; (deftest first-monday-of-march-2013
+;;   (is (= [2013 3 4] (meetup/first-monday 3 2013))))
 
-(deftest first-monday-of-april-2013
-  (is (= [2013 4 1] (meetup/first-monday 4 2013))))
+;; (deftest first-monday-of-april-2013
+;;   (is (= [2013 4 1] (meetup/first-monday 4 2013))))
 
-(deftest first-tuesday-of-may-2013
-  (is (= [2013 5 7] (meetup/first-tuesday 5 2013))))
+;; (deftest first-tuesday-of-may-2013
+;;   (is (= [2013 5 7] (meetup/first-tuesday 5 2013))))
 
-(deftest first-tuesday-of-june-2013
-  (is (= [2013 6 4] (meetup/first-tuesday 6 2013))))
+;; (deftest first-tuesday-of-june-2013
+;;   (is (= [2013 6 4] (meetup/first-tuesday 6 2013))))
 
 ;; (deftest first-wednesday-of-july-2013
 ;;   (is (= [2013 7 3] (meetup/first-wednesday 7 2013))))
