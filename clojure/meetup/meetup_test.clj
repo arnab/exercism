@@ -1,68 +1,68 @@
 (ns meetup.test (:require [clojure.test :refer :all]))
 (load-file "meetup.clj")
 
-;; (deftest monteenth-of-may-2013
-;;   (is (= [2013 5 13] (meetup/monteenth 5 2013))))
+(deftest monteenth-of-may-2013
+  (is (= [2013 5 13] (meetup/monteenth 5 2013))))
 
-;; (deftest monteenth-of-august-2013
-;;   (is (= [2013 8 19] (meetup/monteenth 8 2013))))
+(deftest monteenth-of-august-2013
+  (is (= [2013 8 19] (meetup/monteenth 8 2013))))
 
-;; (deftest monteenth-of-september-2013
-;;   (is (= [2013 9 16] (meetup/monteenth 9 2013))))
+(deftest monteenth-of-september-2013
+  (is (= [2013 9 16] (meetup/monteenth 9 2013))))
 
-;; (deftest tuesteenth-of-march-2013
-;;   (is (= [2013 3 19] (meetup/tuesteenth 3 2013))))
+(deftest tuesteenth-of-march-2013
+  (is (= [2013 3 19] (meetup/tuesteenth 3 2013))))
 
-;; (deftest tuesteenth-of-april-2013
-;;   (is (= [2013 4 16] (meetup/tuesteenth 4 2013))))
+(deftest tuesteenth-of-april-2013
+  (is (= [2013 4 16] (meetup/tuesteenth 4 2013))))
 
-;; (deftest tuesteenth-of-august-2013
-;;   (is (= [2013 8 13] (meetup/tuesteenth 8 2013))))
+(deftest tuesteenth-of-august-2013
+  (is (= [2013 8 13] (meetup/tuesteenth 8 2013))))
 
-;; (deftest wednesteenth-of-january-2013
-;;   (is (= [2013 1 16] (meetup/wednesteenth 1 2013))))
+(deftest wednesteenth-of-january-2013
+  (is (= [2013 1 16] (meetup/wednesteenth 1 2013))))
 
-;; (deftest wednesteenth-of-february-2013
-;;   (is (= [2013 2 13] (meetup/wednesteenth 2 2013))))
+(deftest wednesteenth-of-february-2013
+  (is (= [2013 2 13] (meetup/wednesteenth 2 2013))))
 
-;; (deftest wednesteenth-of-june-2013
-;;   (is (= [2013 6 19] (meetup/wednesteenth 6 2013))))
+(deftest wednesteenth-of-june-2013
+  (is (= [2013 6 19] (meetup/wednesteenth 6 2013))))
 
-;; (deftest thursteenth-of-may-2013
-;;   (is (= [2013 5 16] (meetup/thursteenth 5 2013))))
+(deftest thursteenth-of-may-2013
+  (is (= [2013 5 16] (meetup/thursteenth 5 2013))))
 
-;; (deftest thursteenth-of-june-2013
-;;   (is (= [2013 6 13] (meetup/thursteenth 6 2013))))
+(deftest thursteenth-of-june-2013
+  (is (= [2013 6 13] (meetup/thursteenth 6 2013))))
 
-;; (deftest thursteenth-of-september-2013
-;;   (is (= [2013 9 19] (meetup/thursteenth 9 2013))))
+(deftest thursteenth-of-september-2013
+  (is (= [2013 9 19] (meetup/thursteenth 9 2013))))
 
-;; (deftest friteenth-of-april-2013
-;;   (is (= [2013 4 19] (meetup/friteenth 4 2013))))
+(deftest friteenth-of-april-2013
+  (is (= [2013 4 19] (meetup/friteenth 4 2013))))
 
-;; (deftest friteenth-of-august-2013
-;;   (is (= [2013 8 16] (meetup/friteenth 8 2013))))
+(deftest friteenth-of-august-2013
+  (is (= [2013 8 16] (meetup/friteenth 8 2013))))
 
-;; (deftest friteenth-of-september-2013
-;;   (is (= [2013 9 13] (meetup/friteenth 9 2013))))
+(deftest friteenth-of-september-2013
+  (is (= [2013 9 13] (meetup/friteenth 9 2013))))
 
-;; (deftest saturteenth-of-february-2013
-;;   (is (= [2013 2 16] (meetup/saturteenth 2 2013))))
+(deftest saturteenth-of-february-2013
+  (is (= [2013 2 16] (meetup/saturteenth 2 2013))))
 
-;; (deftest saturteenth-of-april-2013
-;;   (is (= [2013 4 13] (meetup/saturteenth 4 2013))))
+(deftest saturteenth-of-april-2013
+  (is (= [2013 4 13] (meetup/saturteenth 4 2013))))
 
-;; (deftest saturteenth-of-october-2013
-;;   (is (= [2013 10 19] (meetup/saturteenth 10 2013))))
+(deftest saturteenth-of-october-2013
+  (is (= [2013 10 19] (meetup/saturteenth 10 2013))))
 
-;; (deftest sunteenth-of-map-2013
-;;   (is (= [2013 5 19] (meetup/sunteenth 5 2013))))
+(deftest sunteenth-of-map-2013
+  (is (= [2013 5 19] (meetup/sunteenth 5 2013))))
 
-;; (deftest sunteenth-of-june-2013
-;;   (is (= [2013 6 16] (meetup/sunteenth 6 2013))))
+(deftest sunteenth-of-june-2013
+  (is (= [2013 6 16] (meetup/sunteenth 6 2013))))
 
-;; (deftest sunteenth-of-october-2013
-;;   (is (= [2013 10 13] (meetup/sunteenth 10 2013))))
+(deftest sunteenth-of-october-2013
+  (is (= [2013 10 13] (meetup/sunteenth 10 2013))))
 
 ;; (deftest first-monday-of-march-2013
 ;;   (is (= [2013 3 4] (meetup/first-monday 3 2013))))
