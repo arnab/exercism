@@ -29,12 +29,9 @@
   (simple-format
    (nth (dates-in yr mm dow) (dec pos))))
 
-(defnschedule-in-date-range [yr mm dow date-range]
+(defn schedule-in-date-range [yr mm dow date-range]
   "returns the first date that's also in the given range. nil if none match.
-   e.g. monteenth in May 2013: (schedule-by-range 2013 5 1 (range 13 20))"
+   e.g. monteenth in May 2013: (schedule-in-date-range 2013 5 1 (range 13 20))"
   (simple-format
-   (first (filter #(contains? date-range (t/day %))
+   (first (filter #(contains? (set date-range) (t/day %))
                   (dates-in yr mm dow)))))
-
-;; (require 'clojure.tools.namespace.repl)
-;; (clojure.tools.namespace.repl/refresh)
