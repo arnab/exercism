@@ -1,6 +1,9 @@
 (ns meetup
   (:require [clj-time.core :as t]
-            [clj-time.predicates :as tpr]))
+            [clj-time.predicates :as tpr]
+            [clojure.tools.namespace.repl :as repl :only [refresh]]))
+
+(repl/refresh)
 
 (defn- simple-format [d]
   (when d
@@ -44,4 +47,3 @@
 (def friteenth    (partial schedule-in-date-range 5 teens))
 (def saturteenth  (partial schedule-in-date-range 6 teens))
 (def sunteenth    (partial schedule-in-date-range 7 teens))
-X
