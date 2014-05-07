@@ -229,49 +229,49 @@
 (deftest fourth-sunday-of-march-2013
   (is (= [2013 3 24] (meetup/fourth-sunday 3 2013))))
 
-;; (deftest fourth-sunday-of-april-2013
-;;   (is (= [2013 4 28] (meetup/fourth-sunday 4 2013))))
+(deftest fourth-sunday-of-april-2013
+  (is (= [2013 4 28] (meetup/fourth-sunday 4 2013))))
 
-;; (deftest last-monday-of-march-2013
-;;   (is (= [2013 3 25] (meetup/last-monday 3 2013))))
+(deftest last-monday-of-march-2013
+  (is (= [2013 3 25] (meetup/last-monday 3 2013))))
 
-;; (deftest last-monday-of-april-2013
-;;   (is (= [2013 4 29] (meetup/last-monday 4 2013))))
+(deftest last-monday-of-april-2013
+  (is (= [2013 4 29] (meetup/last-monday 4 2013))))
 
-;; (deftest last-tuesday-of-may-2013
-;;   (is (= [2013 5 28] (meetup/last-tuesday 5 2013))))
+(deftest last-tuesday-of-may-2013
+  (is (= [2013 5 28] (meetup/last-tuesday 5 2013))))
 
-;; (deftest last-tuesday-of-june-2013
-;;   (is (= [2013 6 25] (meetup/last-tuesday 6 2013))))
+(deftest last-tuesday-of-june-2013
+  (is (= [2013 6 25] (meetup/last-tuesday 6 2013))))
 
-;; (deftest last-wednesday-of-july-2013
-;;   (is (= [2013 7 31] (meetup/last-wednesday 7 2013))))
+(deftest last-wednesday-of-july-2013
+  (is (= [2013 7 31] (meetup/last-wednesday 7 2013))))
 
-;; (deftest last-wednesday-of-august-2013
-;;   (is (= [2013 8 28] (meetup/last-wednesday 8 2013))))
+(deftest last-wednesday-of-august-2013
+  (is (= [2013 8 28] (meetup/last-wednesday 8 2013))))
 
-;; (deftest last-thursday-of-september-2013
-;;   (is (= [2013 9 26] (meetup/last-thursday 9 2013))))
+(deftest last-thursday-of-september-2013
+  (is (= [2013 9 26] (meetup/last-thursday 9 2013))))
 
-;; (deftest last-thursday-of-october-2013
-;;   (is (= [2013 10 31] (meetup/last-thursday 10 2013))))
+(deftest last-thursday-of-october-2013
+  (is (= [2013 10 31] (meetup/last-thursday 10 2013))))
 
-;; (deftest last-friday-of-november-2013
-;;   (is (= [2013 11 29] (meetup/last-friday 11 2013))))
+(deftest last-friday-of-november-2013
+  (is (= [2013 11 29] (meetup/last-friday 11 2013))))
 
-;; (deftest last-friday-of-december-2013
-;;   (is (= [2013 12 27] (meetup/last-friday 12 2013))))
+(deftest last-friday-of-december-2013
+  (is (= [2013 12 27] (meetup/last-friday 12 2013))))
 
-;; (deftest last-saturday-of-january-2013
-;;   (is (= [2013 1 26] (meetup/last-saturday 1 2013))))
+(deftest last-saturday-of-january-2013
+  (is (= [2013 1 26] (meetup/last-saturday 1 2013))))
 
-;; (deftest last-saturday-of-february-2013
-;;   (is (= [2013 2 23] (meetup/last-saturday 2 2013))))
+(deftest last-saturday-of-february-2013
+  (is (= [2013 2 23] (meetup/last-saturday 2 2013))))
 
-;; (deftest last-sunday-of-march-2013
-;;   (is (= [2013 3 31] (meetup/last-sunday 3 2013))))
+(deftest last-sunday-of-march-2013
+  (is (= [2013 3 31] (meetup/last-sunday 3 2013))))
 
-;; (deftest last-sunday-of-april-2013
-;;   (is (= [2013 4 28] (meetup/last-sunday 4 2013))))
+(deftest last-sunday-of-april-2013
+  (is (= [2013 4 28] (meetup/last-sunday 4 2013))))
 
 (run-tests)

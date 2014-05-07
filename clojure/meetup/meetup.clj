@@ -27,7 +27,9 @@
    e.g. Fourth Sunday of March 2013:
           (schedule-in-week-num 7 4 3 2013)"
   (simple-format
-   (nth (dates-in yr mm dow) (dec pos))))
+   (if (= -1 pos)
+     (last (dates-in yr mm dow))
+     (nth (dates-in yr mm dow) (dec pos)))))
 
 (defn schedule-in-date-range [dow date-range mm yr]
   "returns the first date that's also in the given range. nil if none match.
@@ -68,7 +70,9 @@
     (let [fname (str pos-name "-" day)
           dow (inc (.indexOf days day))
           pos (inc (.indexOf pos-names pos-name))]
+      (do (schedule-in-week-num-fn fname dow pos))))
+  (doseq [day days]
+    (let [fname (str "last-" day)
+          dow (inc (.indexOf days day))
+          pos -1]
       (do (schedule-in-week-num-fn fname dow pos)))))
-
-;; (schedule-in-week-num-fn "fourth-tuesday" 2 4)
-;; (fourth-tuesday 5 2013)
