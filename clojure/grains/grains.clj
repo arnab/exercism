@@ -1,6 +1,7 @@
 (ns grains)
 
-(defn square [n]
-  (if (= n 1)
-      1
-      (* 2 (square (dec n)))))
+(defn square [num]
+  (loop [n num acc 1]
+   (if (= n 1)
+      acc
+      (recur (dec n) (* 2 acc)))))
