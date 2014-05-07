@@ -51,3 +51,24 @@
     (let [fname (str d "teenth")
           dow (inc (.indexOf days d))]
       (do (schedule-in-date-range-fn fname dow teens)))))
+
+(defmacro schedule-in-week-num-fn [fname dow pos]
+  "creates fn to partially apply schedule-in-week-num.
+   e.g. (schedule-in-week-num-fn 'third-tuesday' 2 3)
+        creates third-tuesday, which can be fully applied with
+        (third-tuesday 5 2013)"
+  `(intern *ns*
+           (symbol ~fname)
+           (partial schedule-in-week-num ~dow ~pos)))
+
+(let [pos-names ["first" "second" "third" "fourth"]
+      days (map #(str % "day") ["mon" "tues" "wednes" "thurs" "fri" "satur" "sun"])]
+  (doseq [pos-name pos-names
+          day days]
+    (let [fname (str pos-name "-" day)
+          dow (inc (.indexOf days day))
+          pos (inc (.indexOf pos-names pos-name))]
+      (do (schedule-in-week-num-fn fname dow pos)))))
+
+;; (schedule-in-week-num-fn "fourth-tuesday" 2 4)
+;; (fourth-tuesday 5 2013)
