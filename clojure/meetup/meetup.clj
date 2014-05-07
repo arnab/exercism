@@ -1,9 +1,6 @@
 (ns meetup
   (:require [clj-time.core :as t]
-            [clj-time.predicates :as tpr]
-            [clojure.tools.namespace.repl :as repl :only [refresh]]))
-
-(repl/refresh)
+            [clj-time.predicates :as tpr]))
 
 (defn- simple-format [d]
   (when d
@@ -39,11 +36,18 @@
    (first (filter #(contains? (set date-range) (t/day %))
                   (dates-in yr mm dow)))))
 
-(def teens (range 13 20))
-(def monteenth    (partial schedule-in-date-range 1 teens))
-(def tuesteenth   (partial schedule-in-date-range 2 teens))
-(def wednesteenth (partial schedule-in-date-range 3 teens))
-(def thursteenth  (partial schedule-in-date-range 4 teens))
-(def friteenth    (partial schedule-in-date-range 5 teens))
-(def saturteenth  (partial schedule-in-date-range 6 teens))
-(def sunteenth    (partial schedule-in-date-range 7 teens))
+(defmacro schedule-in-date-range-fn [fname dow date-range]
+  "creates fn to partially apply schedule-in-date-range.
+   e.g. (schedule-in-date-range-fn 'monteenth' 1 teens)
+        defines the monteenth fn, which can be fully applied with:
+        (monteenth 5 2013)"
+  `(intern *ns*
+           (symbol ~fname)
+           (partial schedule-in-date-range ~dow ~date-range)))
+
+(let [days ["mon" "tues" "wednes" "thurs" "fri" "satur" "sun"]
+      teens (range 13 20)]
+  (doseq [d days]
+    (let [fname (str d "teenth")
+          dow (inc (.indexOf days d))]
+      (do (schedule-in-date-range-fn fname dow teens)))))
