@@ -22,7 +22,7 @@
 (deftest square-64
   (is (= 9223372036854775808 (grains/square 64))))
 
-;; (deftest total-grains
-;;   (is (= 18446744073709551615  (grains/total))))
+(deftest total-grains
+  (is (= 18446744073709551615  (grains/total))))
 
 (run-tests)
