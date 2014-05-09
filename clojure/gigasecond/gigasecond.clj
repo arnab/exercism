@@ -10,9 +10,7 @@
   (c-t/date-time y m d))
 
 (defn- add-gigaseconds [t]
-  (c-t/plus t
-          ;; add in minutes rather than secs, to avoid int overflows in clj-time
-          (c-t/minutes (/ (bigint 1e9) 60))))
+  (c-t/plus t (c-t/seconds 1e9)))
 
 (defn from
   "returns the gigasecond date (10**9 sec in the future) from the given date."
