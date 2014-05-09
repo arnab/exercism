@@ -1,16 +1,16 @@
 (ns gigasecond
-  (:require [clj-time.core :as c-t]))
+  (:require [clj-time.core :as c-t]
+            [clj-time.format :as c-f]))
 
-(defn- format [time]
-  [(c-t/year time)
-   (c-t/month time)
-   (c-t/day time)])
+(defn- format [t]
+  (map #(% t)
+   [c-t/year c-t/month c-t/day]))
 
 (defn- to-time [y m d]
   (c-t/date-time y m d))
 
-(defn- add-gigaseconds [time]
-  (c-t/plus time
+(defn- add-gigaseconds [t]
+  (c-t/plus t
           ;; add in minutes rather than secs, to avoid int overflows in clj-time
           (c-t/minutes (/ (bigint 1e9) 60))))
 
