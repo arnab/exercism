@@ -3,8 +3,8 @@
             [clj-time.format :as c-f]))
 
 (defn- format [t]
-  (map #(% t)
-   [c-t/year c-t/month c-t/day]))
+  (let [{:keys [years months days]} (c-f/instant->map t)]
+    [years months days]))
 
 (defn- to-time [y m d]
   (c-t/date-time y m d))
