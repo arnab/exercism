@@ -7,9 +7,7 @@
     (loop [n n
            candidate 2
            acc []]
-      (let [remaining (bigint (/ n candidate))]
-        (cond (= n 1) acc
-              (= n candidate) (conj acc candidate)
-              :else (if (divisible? n candidate)
-                      (recur remaining candidate (conj acc candidate))
-                      (recur n (inc candidate) acc)))))))
+      (if (<= n 1) acc
+          (if (divisible? n candidate)
+            (recur (bigint (/ n candidate)) candidate (conj acc candidate))
+            (recur n (inc candidate) acc))))))
