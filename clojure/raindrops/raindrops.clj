@@ -17,8 +17,7 @@
 (let [lang {3 "Pling" 5 "Plang" 7 "Plong"}]
   (defn convert
     [n]
-    (let [ns (set (factors n))
-          kws (set (keys lang))]
-      (if-let [found-ns (seq (set/intersection ns kws))]
+    (let [ns (set (factors n))]
+      (if-let [found-ns (seq (set/intersection ns (set (keys lang))))]
         (s/join (map lang found-ns))
         (str n)))))
