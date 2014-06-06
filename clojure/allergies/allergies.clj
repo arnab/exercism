@@ -18,7 +18,7 @@
      :else (let [allergy-score (Math/pow 2 allergy-num)
                  allergy (nth allergies allergy-num)]
              (if (>= s allergy-score)
-               (recur (- s allergy-score) (dec allergy-num) (cons allergy acc))
+               (recur (- s allergy-score) allergy-num (cons allergy acc))
                (recur s (dec allergy-num) acc))))))
 
 (defn allergic_to?
