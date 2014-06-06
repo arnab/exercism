@@ -18,10 +18,10 @@
      :else (let [allergy-score (Math/pow 2 allergy-num)
                  allergy (nth allergies allergy-num)]
              (if (>= s allergy-score)
-               (recur (- s allergy-score) (dec allergy-num) (conj acc allergy))
+               (recur (- s allergy-score) (dec allergy-num) (cons allergy acc))
                (recur s (dec allergy-num) acc))))))
 
 (defn allergic_to?
   "returns whether the given score includes the allergy"
   [score allergy]
-  (contains? (list score) allergy))
+  (contains? (set (list score)) allergy))
